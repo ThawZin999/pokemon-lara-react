@@ -4,6 +4,8 @@ import ErrorPage from "./ErrorPage";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import CardDetail from "./pages/CardDetail";
+import Cart from "./pages/Cart";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +20,14 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/card-detail/:id",
+        element: <CardDetail />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
     ],
   },
