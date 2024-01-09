@@ -13,7 +13,7 @@ export default function Root() {
   return (
     <>
       <Nav />
-      <div className="lg:w-[70%] md:w-[80%] w-[90%] mx-auto my-3 ">
+      <div className=" lg:w-[70%] md:w-[80%] w-[90%] mx-auto mt-3 ">
         <Outlet />
       </div>
     </>

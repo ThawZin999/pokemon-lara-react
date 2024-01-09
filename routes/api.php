@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CardController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -24,4 +25,10 @@ Route::post('/login', [UserController::class,'login']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', [UserController::class, 'user']);
     Route::post('/logout', [UserController::class, 'logout']);
+    Route::post('/create-card', [CardController::class, 'store']);
+    Route::get('/index-card', [CardController::class, 'index']);
+    Route::put('/update-status/{cardId}', [CardController::class, 'updateStatus']);
+    Route::get('/edit-card/{cardId}', [CardController::class, 'edit']);
+    Route::put('/update-card/{cardId}', [CardController::class, 'update']);
+    Route::delete('/delete-card/{cardId}', [CardController::class, 'destroy']);
 });

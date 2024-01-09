@@ -6,6 +6,10 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import CardDetail from "./pages/CardDetail";
 import Cart from "./pages/Cart";
+import ChooseToCreate from "./pages/CRUD/ChooseToCreate";
+import CardCreate from "./pages/CRUD/CardCreate";
+import CardEdit from "./pages/CRUD/CardEdit";
+import CardIndex from "./pages/CRUD/CardIndex";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +32,22 @@ const router = createBrowserRouter([
       {
         path: "/cart",
         element: <Cart />,
+      },
+      {
+        path: "/card/choose-to-create",
+        element: <ChooseToCreate />,
+      },
+      {
+        path: "/card/index",
+        element: <CardIndex />,
+      },
+      {
+        path: "/card/create",
+        element: <CardCreate />,
+      },
+      {
+        path: "/card/edit/:cardId",
+        element: <CardEdit />,
       },
     ],
   },

@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <div id="app"></div>
+    <div id="app" class="dark:bg-slate-900 min-h-screen"></div>
 </body>
 
 </html>

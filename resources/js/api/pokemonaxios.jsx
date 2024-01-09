@@ -5,7 +5,7 @@ const axios = Axios.create({
     "X-Api-Key": "4bbd6c39-e4cc-49cf-aaaa-c8501e618fb8",
   },
   params: {
-    pageSize: 50,
+    pageSize: 20,
   },
 });
 

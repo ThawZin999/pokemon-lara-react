@@ -4,6 +4,7 @@ import axios from "../api/axios";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import CartIcon from "./CartIcon";
+import ThemeToggleButton from "./ThemeToggleButton";
 
 export default function Nav() {
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ export default function Nav() {
   };
   return (
     <>
-      <nav className="bg-blue-900 border-gray-200 dark:bg-gray-900">
+      <nav className="bg-blue-900 border-gray-200 dark:bg-gray-800">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4">
           <Link
             to="/"
@@ -27,7 +28,11 @@ export default function Nav() {
             <img src={logo} className="h-8" alt="Pokemon Logo" />
           </Link>
           <div className="flex items-center space-x-6 rtl:space-x-reverse">
+            <Link to="/card/index" className=" text-sm text-white">
+              CRUD Cards
+            </Link>
             <CartIcon />
+            <ThemeToggleButton />
             <button
               onClick={handleLogout}
               className="text-sm  text-white dark:text-gray-500 hover:underline"

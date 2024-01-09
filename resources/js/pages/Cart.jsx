@@ -4,11 +4,17 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export default function Cart() {
-  const { cartItems, addToCart, removeFromCart, clearCart, getCartTotal } =
-    useCart();
+  const {
+    cartItems,
+    addToCart,
+    removeFromCart,
+    clearCart,
+    getCartTotal,
+    removeMultipleFromCart,
+  } = useCart();
 
   return (
-    <div className="grid min-h-full sm:px-3 ">
+    <div className="grid min-h-full sm:px-3">
       <div className="px-4 pt-8">
         <div className="flex flex-row justify-between">
           <div>
@@ -28,7 +34,7 @@ export default function Cart() {
             ""
           )}
         </div>
-        {/* Cart List */}
+
         <div className=" mx-auto my-3 max-w-2xl ">
           <div className="rounded-lg bg-white shadow dark:bg-gray-800">
             <div className="px-4 py-6 sm:px-5 sm:py-10">
@@ -83,30 +89,17 @@ export default function Cart() {
                                 }}
                                 className="flex items-center justify-center rounded-l-md bg-gray-200 px-3 transition hover:bg-black hover:text-white dark:bg-gray-700 dark:hover:bg-black"
                               >
-                                {/* {qtyLoader &&
-                                      qtyLoader[0] === item.id &&
-                                      qtyLoader[1] === "REDUCE" && (
-                                        <Spinner size="sm" />
-                                      )} */}
                                 -
                               </button>
                               <div className="flex w-full items-center justify-center bg-gray-100 px-4 text-xs uppercase transition dark:bg-gray-500">
                                 {item.quantity}
                               </div>
                               <button
-                                onClick={() =>
-                                  // updateCart(item.id, "ADD")
-                                  {
-                                    addToCart(item);
-                                  }
-                                }
+                                onClick={() => {
+                                  addToCart(item);
+                                }}
                                 className="flex items-center justify-center rounded-r-md bg-gray-200 px-3 transition hover:bg-black hover:text-white dark:bg-gray-700 dark:hover:bg-black"
                               >
-                                {/* {qtyLoader &&
-                                      qtyLoader[0] === item.id &&
-                                      qtyLoader[1] === "ADD" && (
-                                        <Spinner size="sm" />
-                                      )} */}
                                 +
                               </button>
                             </div>
@@ -115,13 +108,11 @@ export default function Cart() {
                               <button
                                 type="button"
                                 onClick={() => {
-                                  removeFromCart(item);
+                                  removeMultipleFromCart(item);
                                   toast.error(
                                     `${item.name} removed from cart!`
                                   );
                                 }}
-                                // removeCartItem(item.id)
-
                                 className="font-medium text-indigo-600 hover:text-indigo-500"
                               >
                                 Remove
@@ -136,17 +127,7 @@ export default function Cart() {
                   "Please Add to Cart"
                 )}
                 {/* Total */}
-                <div className="hidden lg:block">
-                  <div className="mt-6  border-b border-t py-2 dark:border-gray-500">
-                    <div className="flex items-center justify-between text-gray-900 dark:text-gray-200">
-                      <p className="text-sm font-medium ">Subtotal</p>
-                      <p className="font-semibold ">$399.00</p>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <p className="text-sm font-medium ">Shipping</p>
-                      <p className="font-semibold ">$8.00</p>
-                    </div>
-                  </div>
+                <div className="">
                   <div className="mt-6 flex items-center justify-between">
                     <p className="text-sm font-medium ">Total</p>
                     {/* <TotalPrice /> */}
@@ -157,17 +138,21 @@ export default function Cart() {
                 </div>
               </div>
             </div>
-            <div className="text-center mx-3">
-              <button
-                onClick={() => {
-                  clearCart();
-                  toast.success("Order Created Successfully.");
-                }}
-                className="text-white w-1/2 mx-6 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-              >
-                Place Order
-              </button>
-            </div>
+            {cartItems.length > 0 ? (
+              <div className="text-center mx-3">
+                <button
+                  onClick={() => {
+                    clearCart();
+                    toast.success("Order Created Successfully.");
+                  }}
+                  className="text-white w-1/2 mx-6 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                >
+                  Place Order
+                </button>
+              </div>
+            ) : (
+              ""
+            )}
           </div>
         </div>
       </div>
