@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    // register
     public function register(RegisterRequest $request) {
 
         $data = $request->validated();
@@ -31,7 +32,7 @@ class UserController extends Controller
         ])->withCookie($cookie);
     }
 
-    // login a user method
+    // login
     public function login(LoginRequest $request) {
         $data = $request->validated();
 
@@ -53,7 +54,7 @@ class UserController extends Controller
         ])->withCookie($cookie);
     }
 
-    // logout a user method
+    // logout
     public function logout(Request $request) {
         $request->user()->currentAccessToken()->delete();
 
@@ -64,7 +65,7 @@ class UserController extends Controller
         ])->withCookie($cookie);
     }
 
-    // get the authenticated user method
+    // get user
     public function user(Request $request) {
         return new UserResource($request->user());
     }

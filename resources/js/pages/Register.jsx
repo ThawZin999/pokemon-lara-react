@@ -11,7 +11,8 @@ export default function Register() {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const navigate = useNavigate();
-  // register user
+
+  // register function
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { name, email, password, cpassword } = e.target.elements;

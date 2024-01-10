@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class CardController extends Controller
 {
+    // show page
     public function index(){
         $cards = Card::latest()->get();
         return response()->json([
@@ -15,6 +16,7 @@ class CardController extends Controller
         ]);
     }
 
+    // create
     public function store(Request $request) {
 
        $request->validate([
@@ -33,6 +35,7 @@ class CardController extends Controller
         ]);
     }
 
+    // Active/Inactive
     public function updateStatus($cardId) {
 
         $card = Card::find($cardId);
@@ -45,6 +48,7 @@ class CardController extends Controller
         ]);
     }
 
+    // edit page
     public function edit($cardId) {
 
         $card = Card::find($cardId);
@@ -60,6 +64,7 @@ class CardController extends Controller
 
     }
 
+    // update
     public function update(Request $request, $cardId) {
 
         $request->validate([
@@ -83,6 +88,7 @@ class CardController extends Controller
         ]);
     }
 
+    // delete
     public function destroy($cardId) {
         Card::find($cardId)->delete();
         return response()->json([

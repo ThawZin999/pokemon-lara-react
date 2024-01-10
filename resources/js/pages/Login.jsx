@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "../api/axios";
 import { useAuth } from "../context/AuthContext";
 import { toast } from "react-toastify";
@@ -9,7 +9,8 @@ export default function Login() {
   const { setUser, csrfToken } = useAuth();
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-  // login user
+
+  // login function
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { email, password } = e.target.elements;

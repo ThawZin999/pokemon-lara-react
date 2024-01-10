@@ -13,13 +13,25 @@ export default function Home() {
   const [hasMore, setHasMore] = useState(true);
   const elementRef = useRef(null);
 
+  //   fetch cards
+  const fetchCards = async () => {
+    const resp = await axios(`https://api.pokemontcg.io/v2/cards?pageSize=10`);
+    const data = await resp.data.data;
+    if (data.length == 0) {
+      setHasMore(false);
+    } else {
+      setCards((prevCards) => [...prevCards, ...data]);
+      console.log(cards);
+    }
+  };
+
+  //   for infinite scroll
   const onIntersection = (entries) => {
     const firstEntry = entries[0];
     if (firstEntry.isIntersecting && hasMore) {
       fetchCards();
     }
   };
-
   useEffect(() => {
     const observer = new IntersectionObserver(onIntersection);
     if (observer && elementRef.current) {
@@ -32,26 +44,16 @@ export default function Home() {
     };
   }, [cards]);
 
-  const fetchCards = async () => {
-    const resp = await axios(`https://api.pokemontcg.io/v2/cards?pageSize=10`);
-    const data = await resp.data.data;
-    if (data.length == 0) {
-      setHasMore(false);
-    } else {
-      setCards((prevCards) => [...prevCards, ...data]);
-      console.log(cards);
-    }
-  };
-
   return (
     <>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        {/* loop cards */}
         {cards.map((d, index) => (
           <div
             key={`${d.id}-${index}`}
-            // ref={index === cards.length - 1 ? observerRef : null}
             className="h-auto w-[70%] mx-auto sm:w-full max-w-full rounded-lg mt-3 bg-white border border-gray-200  shadow-lg dark:bg-gray-800 dark:border-gray-700"
           >
+            {/* image with card detail link */}
             <Link to={`/card-detail/${d.id}`}>
               <img
                 className="h-auto pt-4 sm:pt-0 w-3/4 mx-auto sm:w-full rounded-t-lg"
@@ -59,19 +61,21 @@ export default function Home() {
                 alt="product image"
               />
             </Link>
+
             <div className="px-5 py-3">
-              <a href="#">
+              <Link to={`/card-detail/${d.id}`}>
                 <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
                   {d.name}
                 </h5>
                 <span className="text-sm dark:text-gray-300">
                   Type: {d.types.join(", ")}
                 </span>
-              </a>
+              </Link>
               <div className="flex items-center mt-5 justify-between">
                 <span className="text-xl font-bold text-gray-900 dark:text-white">
                   Price:{d.hp}Ks
                 </span>
+                {/* Add To Cart Button */}
                 <button
                   onClick={() => {
                     addToCart(d);

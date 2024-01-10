@@ -19,6 +19,7 @@ export default function CardIndex() {
     fetchCards();
   }, []);
 
+  //   Active/InActive function
   const handleStatus = (cardId, curretStatus) => {
     axios.put(`/update-status/${cardId}`).then(() => {
       setCards((cards) =>
@@ -30,6 +31,7 @@ export default function CardIndex() {
     });
   };
 
+  //   Delete function
   const handleDelete = async (e, cardId) => {
     e.preventDefault();
     const resp = await axios.delete(`/delete-card/${cardId}`);
@@ -84,6 +86,7 @@ export default function CardIndex() {
 
                 {!loader && (
                   <tbody>
+                    {/* loop cards */}
                     {cards.map((d) => (
                       <tr
                         key={d.id}
@@ -99,6 +102,7 @@ export default function CardIndex() {
                         <td className="px-3 py-3">{d.name}</td>
                         <td className="px-3 py-3">{d.price}</td>
                         <td className="px-3 py-3 ">
+                          {/* Active/InActive */}
                           <label className="relative inline-flex items-center cursor-pointer">
                             <input
                               type="checkbox"
@@ -111,12 +115,14 @@ export default function CardIndex() {
                         </td>
                         <td className="px-3 py-3">
                           <div className="rounded-md inline-flex shadow-sm">
+                            {/* link to edit page */}
                             <Link
                               to={`/card/edit/${d.id}`}
                               className="px-3 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 rounded-l-lg hover:bg-green-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-green-400 dark:focus:ring-blue-500 dark:focus:text-white"
                             >
                               Edit
                             </Link>
+                            {/* delete form */}
                             <div className="px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-r-md hover:bg-red-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-red-500 dark:focus:ring-blue-500 dark:focus:text-white">
                               <form
                                 method="post"

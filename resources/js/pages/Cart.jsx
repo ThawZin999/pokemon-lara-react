@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export default function Cart() {
+  // from Cart Context
   const {
     cartItems,
     addToCart,
@@ -75,6 +76,7 @@ export default function Cart() {
                           </div>
                           <div className="flex flex-1 items-end justify-between text-sm">
                             <div className="flex  h-8 w-12 items-stretch text-gray-600 dark:text-gray-200">
+                              {/* remove from cart */}
                               <button
                                 onClick={() => {
                                   const cartItem = cartItems.find(
@@ -96,6 +98,7 @@ export default function Cart() {
                               <div className="flex w-full items-center justify-center bg-gray-100 px-4 text-xs uppercase transition dark:bg-gray-500">
                                 {item.quantity}
                               </div>
+                              {/* add to cart */}
                               <button
                                 onClick={() => {
                                   addToCart(item);
@@ -106,6 +109,7 @@ export default function Cart() {
                               </button>
                             </div>
 
+                            {/* remove multiple quantity of one item */}
                             <div className="flex">
                               <button
                                 type="button"
@@ -140,6 +144,8 @@ export default function Cart() {
                 </div>
               </div>
             </div>
+            {/* Place Order */}
+            {/* I didn't add funtion of place order data to server because this is just a test */}
             {cartItems.length > 0 ? (
               <div className="text-center mx-3">
                 <button

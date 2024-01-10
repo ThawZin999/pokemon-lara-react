@@ -21,6 +21,7 @@ export default function Home() {
     fetchCards();
   }, []);
 
+  // i added this page to fetch data from pokemon api and create own data on our server
   return (
     <>
       {loader && (
@@ -28,6 +29,7 @@ export default function Home() {
           <Spinner />
         </div>
       )}
+
       {!loader && (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {cards.map((d) => (
@@ -53,6 +55,7 @@ export default function Home() {
                   <span className="text-xl font-bold text-gray-900 dark:text-white">
                     Price:{d.hp}Ks
                   </span>
+                  {/* choose card to create */}
                   <button
                     onClick={() => {
                       chooseCard(d);

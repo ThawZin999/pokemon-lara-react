@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useCard } from "../../context/CardContext";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "../../api/axios";
 import { toast } from "react-toastify";
 
 export default function CardCreate() {
   const { cardId } = useParams();
-  const navigate = useNavigate();
 
   const [cardName, setCardName] = useState("");
   const [cardPrice, setCardPrice] = useState("");
-  const [loader, setLoader] = useState(true);
-
   useEffect(() => {
     const fetchCard = async () => {
       const resp = await axios.get(`/edit-card/${cardId}`);
@@ -23,6 +19,7 @@ export default function CardCreate() {
     fetchCard();
   }, []);
 
+  //   edit function
   const handleEdit = async (e) => {
     e.preventDefault();
 
