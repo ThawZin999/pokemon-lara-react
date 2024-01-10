@@ -9,11 +9,11 @@ const CartIcon = () => {
     <Link
       to="/cart"
       type="button"
-      className="relative inline-flex items-center rounded-lg p-2.5 text-center   text-sm font-medium text-white hover:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700
+      className="relative inline-flex items-center rounded-lg p-2.5 text-center   text-sm font-medium text-white hover:bg-yellow-700 focus:outline-none focus:ring-1 focus:ring-gray-200 dark:bg-gray-800 dark:hover:bg-yellow-700
             dark:focus:ring-gray-700"
     >
       <svg
-        className="h-5 w-6 text-white"
+        className="h-5 w-6 text-gray-300 hover:text-yellow-300"
         aria-hidden="true"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -29,7 +29,7 @@ const CartIcon = () => {
       </svg>
 
       {cartItems.length > 0 && (
-        <div className="absolute -end-0 -top-0 inline-flex h-5 w-5 items-center justify-center rounded-full border-2 border-white bg-red-500 text-xs font-bold text-red-100 dark:border-gray-900 dark:bg-red-700 dark:text-red-200">
+        <div className="absolute -end-0 -top-0 inline-flex h-5 w-5 items-center justify-center rounded-full border-1 border-gay-300 bg-red-500 text-xs font-bold text-red-100 dark:border-gray-900 dark:bg-red-700 dark:text-red-200">
           {cartItems.length}
         </div>
       )}

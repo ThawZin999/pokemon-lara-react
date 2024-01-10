@@ -25,11 +25,12 @@ export default function Login() {
         setUser(resp.data.user);
         toast.success(`Hello ${resp.data.user.name}`);
         navigate("/");
-        // window.location.reload();
       }
     } catch (error) {
       if (error.response.status === 401) {
         setError(error.response.data.message);
+      } else {
+        toast.error("Login Fail");
       }
     }
   };

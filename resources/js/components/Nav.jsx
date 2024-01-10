@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "../../../public/assets/images/pokemon-logo-png-1432.png";
 import axios from "../api/axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import CartIcon from "./CartIcon";
 import ThemeToggleButton from "./ThemeToggleButton";
@@ -28,14 +28,21 @@ export default function Nav() {
             <img src={logo} className="h-8" alt="Pokemon Logo" />
           </Link>
           <div className="flex items-center space-x-6 rtl:space-x-reverse">
-            <Link to="/card/index" className=" text-sm text-white">
+            <NavLink
+              to="/card/index"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-sm text-yellow-300"
+                  : " text-sm text-gray-200 hover:text-yellow-300"
+              }
+            >
               CRUD Cards
-            </Link>
+            </NavLink>
             <CartIcon />
             <ThemeToggleButton />
             <button
               onClick={handleLogout}
-              className="text-sm  text-white dark:text-gray-500 hover:underline"
+              className="text-sm text-gray-200 hover:text-yellow-300"
             >
               Logout
             </button>

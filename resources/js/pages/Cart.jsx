@@ -18,7 +18,9 @@ export default function Cart() {
       <div className="px-4 pt-8">
         <div className="flex flex-row justify-between">
           <div>
-            <p className="text-xl font-medium">Order Summary</p>
+            <p className="text-xl font-medium dark:text-gray-200">
+              Order Summary
+            </p>
             <p className="text-gray-400">Check your items.</p>
           </div>
           {cartItems.length > 0 ? (
@@ -124,11 +126,11 @@ export default function Cart() {
                     ))}
                   </ul>
                 ) : (
-                  "Please Add to Cart"
+                  <div className="dark:text-gray-200">"Please Add to Cart"</div>
                 )}
                 {/* Total */}
                 <div className="">
-                  <div className="mt-6 flex items-center justify-between">
+                  <div className="mt-6 flex items-center justify-between dark:text-gray-300">
                     <p className="text-sm font-medium ">Total</p>
                     {/* <TotalPrice /> */}
                     <p className="text-2xl font-semibold ">
